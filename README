@@ -1,0 +1,59 @@
+ODOM(Object DOM)
+
+    A simple DOM wrapper object making access to child nodes easy.
+
+    PARSE
+
+    Parse a string to create an ODOM object.
+
+        ODOM().parse(xml_string)
+
+
+    CHILD NODES
+
+    You can access a child node by
+
+        node.ChildNodeTagName
+
+    where ChildNodeTagName is the tag name of the child node.
+    Chaining is easy
+
+        node.ChildNodeTagName.GrandsonTagName
+
+    and it returns a list of ODOM objects if there are siblings with same 
+    tag name.
+
+        node.ChildNodeTagName.GrandsonTagName[0]
+
+
+    ATTRIBUTES
+
+    Attributes are inside _attr,
+
+        node._attr.href
+        node._attr.title
+
+    where href and title is the name of the attribute.
+
+
+    TEXT
+
+    Since ODOM has only ElementNode and AttributeNode in DOM terms,
+    you cannot access to a 'TextNode'.
+    However, you can read inner text with _text,
+
+        node._text
+
+    This will read appropriate text data if node had TextNode as a single 
+    child. Note it doesn't behave that way when having multiple child nodes.
+
+
+    DOM
+
+    DOM members are not directly accessible because it may interfere with
+    the tag name of child node, but you could still access to original dom
+    object with _dom.
+
+        node._dom.getElementsByTagName('childNodeTagName')[0]
+
+
