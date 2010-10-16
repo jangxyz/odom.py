@@ -1,0 +1,9 @@
+<Game GameSeq="527" GameName="아이온(Aion)"> 
+  <Server ServerSeq="3168" ServerName="바이젤[천족]" biBasePrice="10000000" vcUnit="키나"> 
+    <dtTranDate Date="10-11" iMarketPrice="5830" iMarketLowestPrice="5450" iTranCount="43" iUpDownPrice="-310" iUpDownLowestPrice="-390" /> 
+    <dtTranDate Date="10-10" iMarketPrice="6140" iMarketLowestPrice="5840" iTranCount="36" iUpDownPrice="-890" iUpDownLowestPrice="-690" /> 
+    <dtTranDate Date="10-09" iMarketPrice="7030" iMarketLowestPrice="6530" iTranCount="28" iUpDownPrice="1040" iUpDownLowestPrice="840" /> 
+    <dtTranDate Date="10-08" iMarketPrice="5990" iMarketLowestPrice="5690" iTranCount="33" iUpDownPrice="-160" iUpDownLowestPrice="-80" /> 
+    <dtTranDate Date="10-07" iMarketPrice="6150" iMarketLowestPrice="5770" iTranCount="39" iUpDownPrice="-530" iUpDownLowestPrice="-560" /> 
+  </Server> 
+</Game>
