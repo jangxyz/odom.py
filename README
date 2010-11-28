@@ -2,6 +2,38 @@ ODOM(Object DOM)
 
     A simple DOM wrapper object making access to child nodes easy.
 
+
+    EXAMPLE
+
+        <?xml version="1.0" encoding="UTF-8" ?>
+        <painting>
+            <img src="madonna.jpg" alt='Foligno Madonna, by Raphael'/>
+            <caption>This is Raphael's "Foligno" Madonna, painted in
+                <date>1511</date>–<date>1512</date>.
+            </caption>
+        </painting>
+
+    to parse the above xml in traditional DOM api style, you must do sumoething like
+
+        doc.firstChild.childNodes[3].childNodes[1].firstChild.nodeValue
+
+    in order to get date value '1511'. 
+    If you know the tag names in advance, you could also go like this
+
+        doc.getElementsByTagName('painting')[0]
+            .getElementsByTagName('caption')[0]
+            .getElementsByTagName('date')[0]
+            .firstChild.nodeValue
+
+    while this is universal and mostly work on any platform and languages, 
+    it is quite annoying. With odom, you can simply write
+
+        doc.painting.caption.date[0]._text
+        
+    simple, huh?
+    
+
+
     PARSE
 
     Parse a string to create an ODOM object.

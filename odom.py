@@ -75,10 +75,16 @@ class OdomNode(object):
         self._attr = None
         self._text = None
 
+class OdomDocumentNode(OdomNode):
+    def __repr__(self):
+        child_nodes = (x for x in dir(self) if not x.startswith("_"))
+        return "<ODOM Document instance at %#x, (%s)>" % (id(self), ",".join(child_nodes))
+
 class OdomElementNode(OdomNode):
     def __repr__(self):
         name = self._dom.tagName
-        return "<ODOM Element: %s at %#x>" % (name, id(self))
+        child_nodes = (x for x in dir(self) if not x.startswith("_"))
+        return "<ODOM Element: %s at %#x, (%s)>" % (name, id(self), ",".join(child_nodes))
 
 class OdomAttrNode(OdomNode):
     def __repr__(self):
@@ -88,9 +94,13 @@ class OdomAttrNode(OdomNode):
 
 class ODOM(object):
     def parse(self, xml):
-        doc = minidom.parseString(xml)
-        root = self.buildElementNode(doc.childNodes[0])
-        return root
+        #doc = minidom.parseString(xml)
+        #root = self.buildElementNode(doc.childNodes[0])
+        #return root
+        doc = OdomDocumentNode(minidom.parseString(xml))
+        root = self.buildElementNode(doc._dom.childNodes[0])
+        setattr(doc, root._dom.tagName, root)
+        return doc
 
     def buildElementNode(self, node):
         el = OdomElementNode(node)
@@ -98,6 +108,7 @@ class ODOM(object):
         # attr
         attr = self.buildAttributeNode(node)
         setattr(el, "_attr", attr)
+        #
         for child in node.childNodes:
             if child.nodeType == ELEMENT_NODE:
                 # child
