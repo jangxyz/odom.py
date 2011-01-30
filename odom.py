@@ -98,7 +98,8 @@ class ODOM(object):
         #root = self.buildElementNode(doc.childNodes[0])
         #return root
         doc = OdomDocumentNode(minidom.parseString(xml))
-        root = self.buildElementNode(doc._dom.childNodes[0])
+        root = [n for n in doc._dom.childNodes if n.nodeType == n.ELEMENT_NODE][0]
+        root = self.buildElementNode(root)
         setattr(doc, root._dom.tagName, root)
         return doc
 
